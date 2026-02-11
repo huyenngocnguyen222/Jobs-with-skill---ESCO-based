@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Taxonomy with Skills - ESCO v4</title>
+    <title>Job Taxonomy Mapping - ESCO v4</title>
     <style>
         * {
             margin: 0;
@@ -12,142 +12,169 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
             min-height: 100vh;
-            padding: 10px;
+            padding: 15px;
+            color: #333;
         }
 
         .container {
             max-width: 1800px;
             margin: 0 auto;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 20px);
+            height: calc(100vh - 30px);
+            border: 1px solid #ddd;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #2c3e50;
             color: white;
-            padding: 15px 25px;
-            text-align: center;
+            padding: 20px 30px;
+            border-bottom: 3px solid #34495e;
             flex-shrink: 0;
         }
 
+        header .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         header h1 {
-            font-size: 1.5em;
-            margin-bottom: 3px;
-            font-weight: 700;
+            font-size: 1.6em;
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }
 
         header p {
-            font-size: 0.85em;
-            opacity: 0.95;
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .info-btn {
+            background: white;
+            color: #2c3e50;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .info-btn:hover {
+            background: #ecf0f1;
+            transform: translateY(-1px);
         }
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-            gap: 10px;
-            padding: 12px 20px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e0e0e0;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1px;
+            background: #ddd;
+            border-bottom: 1px solid #ddd;
             flex-shrink: 0;
         }
 
         .stat-card {
             background: white;
-            padding: 10px;
-            border-radius: 6px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            padding: 15px;
             text-align: center;
         }
 
         .stat-card .number {
-            font-size: 1.4em;
+            font-size: 1.8em;
             font-weight: 700;
-            color: #667eea;
+            color: #2c3e50;
             display: block;
             line-height: 1;
         }
 
         .stat-card .label {
-            font-size: 0.7em;
-            color: #666;
+            font-size: 0.75em;
+            color: #7f8c8d;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-top: 3px;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
             display: block;
+            font-weight: 600;
         }
 
         .controls {
-            padding: 12px 20px;
-            background: white;
-            border-bottom: 2px solid #e0e0e0;
+            padding: 15px 20px;
+            background: #fafafa;
+            border-bottom: 1px solid #ddd;
             flex-shrink: 0;
         }
 
         .search-filter {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 10px;
+            margin-bottom: 12px;
         }
 
         .search-filter input,
         .search-filter select {
-            padding: 8px 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
+            padding: 9px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             font-size: 13px;
             transition: border-color 0.3s;
+            background: white;
         }
 
         .search-filter input:focus,
         .search-filter select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #2c3e50;
         }
 
         .filter-chips {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .chip {
-            padding: 5px 12px;
-            border-radius: 14px;
-            background: #f0f0f0;
-            border: 2px solid transparent;
+            padding: 6px 14px;
+            border-radius: 3px;
+            background: white;
+            border: 1px solid #ccc;
             cursor: pointer;
             font-size: 12px;
             transition: all 0.3s;
             user-select: none;
+            font-weight: 500;
         }
 
         .chip:hover {
-            background: #e0e0e0;
+            background: #f5f5f5;
+            border-color: #999;
         }
 
         .chip.active {
-            background: #667eea;
+            background: #2c3e50;
             color: white;
-            border-color: #667eea;
+            border-color: #2c3e50;
         }
 
         .results-header {
-            padding: 10px 20px;
-            background: #f8f9fa;
+            padding: 12px 20px;
+            background: white;
             font-weight: 600;
-            color: #666;
-            font-size: 12px;
+            color: #555;
+            font-size: 13px;
             flex-shrink: 0;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 2px solid #ddd;
         }
 
         .table-container {
@@ -165,122 +192,140 @@
         thead {
             position: sticky;
             top: 0;
-            background: #f8f9fa;
+            background: #f8f8f8;
             z-index: 10;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         th {
-            padding: 10px 8px;
+            padding: 12px 10px;
             text-align: left;
             font-weight: 600;
-            color: #333;
-            border-bottom: 2px solid #e0e0e0;
+            color: #2c3e50;
+            border-bottom: 2px solid #ddd;
             white-space: nowrap;
             font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         td {
-            padding: 8px;
+            padding: 10px;
             border-bottom: 1px solid #f0f0f0;
             vertical-align: top;
         }
 
         tbody tr:hover {
-            background: #f8f9fa;
+            background: #fafafa;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #fcfcfc;
+        }
+
+        tbody tr:nth-child(even):hover {
+            background: #f5f5f5;
         }
 
         .match-badge {
             display: inline-block;
-            padding: 2px 8px;
-            border-radius: 8px;
+            padding: 3px 10px;
+            border-radius: 3px;
             font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
+            border: 1px solid;
         }
 
         .match-exact_preferredLabel {
-            background: #d4edda;
-            color: #155724;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-color: #66bb6a;
         }
 
         .match-exact_altLabels {
-            background: #d1ecf1;
-            color: #0c5460;
+            background: #e3f2fd;
+            color: #1565c0;
+            border-color: #42a5f5;
         }
 
         .match-hybrid_medium {
-            background: #fff3cd;
-            color: #856404;
+            background: #fff3e0;
+            color: #e65100;
+            border-color: #ffb74d;
         }
 
         .match-hybrid_weak {
-            background: #f8d7da;
-            color: #721c24;
+            background: #fce4ec;
+            color: #c2185b;
+            border-color: #f06292;
         }
 
         .match-low_confidence {
-            background: #f0f0f0;
-            color: #666;
+            background: #f5f5f5;
+            color: #616161;
+            border-color: #bdbdbd;
         }
 
         .score {
-            font-weight: 600;
-            color: #667eea;
-            font-size: 13px;
+            font-weight: 700;
+            font-size: 14px;
         }
 
         .score.high {
-            color: #28a745;
+            color: #2e7d32;
         }
 
         .score.medium {
-            color: #ffc107;
+            color: #f57c00;
         }
 
         .score.low {
-            color: #dc3545;
+            color: #c62828;
         }
 
         .skills-box {
             max-height: 150px;
             overflow-y: auto;
             font-size: 11px;
-            line-height: 1.4;
-            background: #f8f9fa;
-            padding: 6px;
-            border-radius: 4px;
+            line-height: 1.5;
+            background: #fafafa;
+            padding: 8px;
+            border-radius: 3px;
+            border: 1px solid #e0e0e0;
         }
 
         .skill-tag {
             display: inline-block;
-            padding: 2px 6px;
+            padding: 3px 8px;
             margin: 2px;
-            background: #e3f2fd;
-            color: #1976d2;
+            background: #f5f5f5;
+            color: #333;
             border-radius: 3px;
             font-size: 10px;
+            border: 1px solid #ddd;
         }
 
         .skill-tag.essential {
-            background: #c8e6c9;
+            background: #e8f5e9;
             color: #2e7d32;
+            border-color: #a5d6a7;
         }
 
         .skill-tag.optional {
             background: #fff3e0;
-            color: #f57c00;
+            color: #e65100;
+            border-color: #ffcc80;
         }
 
         .skill-count {
             font-size: 10px;
             color: #666;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
 
         .link {
-            color: #667eea;
+            color: #1565c0;
             text-decoration: none;
             font-size: 10px;
         }
@@ -297,15 +342,15 @@
 
         .expand-btn {
             cursor: pointer;
-            color: #667eea;
+            color: #1565c0;
             font-size: 10px;
-            margin-top: 4px;
             user-select: none;
             display: inline-block;
-            padding: 2px 6px;
+            padding: 3px 8px;
             background: #e3f2fd;
             border-radius: 3px;
             margin-left: 4px;
+            border: 1px solid #90caf9;
         }
 
         .expand-btn:hover {
@@ -320,45 +365,53 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.6);
         }
 
         .modal-content {
             background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 800px;
+            margin: 8% auto;
+            padding: 0;
+            border-radius: 6px;
+            width: 90%;
+            max-width: 700px;
             max-height: 80vh;
-            overflow-y: auto;
+            overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid #ddd;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e0e0e0;
+            padding: 20px 25px;
+            background: #2c3e50;
+            color: white;
         }
 
         .modal-header h2 {
-            color: #333;
             font-size: 1.3em;
+            font-weight: 600;
         }
 
         .close {
-            color: #aaa;
+            color: white;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
             line-height: 1;
+            opacity: 0.8;
         }
 
         .close:hover {
-            color: #000;
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 25px;
+            max-height: calc(80vh - 80px);
+            overflow-y: auto;
         }
 
         .modal-skills {
@@ -368,21 +421,74 @@
         }
 
         .modal-skill-tag {
-            padding: 6px 12px;
-            border-radius: 6px;
+            padding: 8px 14px;
+            border-radius: 3px;
             font-size: 13px;
-            background: #f0f0f0;
+            background: #f5f5f5;
             color: #333;
+            border: 1px solid #ddd;
         }
 
         .modal-skill-tag.essential {
-            background: #c8e6c9;
+            background: #e8f5e9;
             color: #2e7d32;
+            border-color: #a5d6a7;
         }
 
         .modal-skill-tag.optional {
             background: #fff3e0;
-            color: #f57c00;
+            color: #e65100;
+            border-color: #ffcc80;
+        }
+
+        .match-type-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .match-type-table th,
+        .match-type-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .match-type-table th {
+            background: #f8f8f8;
+            font-weight: 600;
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.3px;
+        }
+
+        .match-type-table td {
+            font-size: 13px;
+        }
+
+        .match-type-table .type-name {
+            font-weight: 600;
+        }
+
+        .match-type-table tr:hover {
+            background: #fafafa;
+        }
+
+        .badge-preview {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: 1px solid;
+        }
+
+        .modal-body p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
 
         @media (max-width: 1024px) {
@@ -408,22 +514,27 @@
 <body>
     <div class="container">
         <header>
-            <h1>🎯 Job Taxonomy with Skills Mapping - ESCO v4</h1>
-            <p>Kết quả ánh xạ nghề nghiệp với Essential & Optional Skills</p>
+            <div class="top-row">
+                <div>
+                    <h1>Job Taxonomy Mapping - ESCO v4</h1>
+                    <p>Professional occupation classification with essential and optional skills mapping</p>
+                </div>
+                <button class="info-btn" onclick="showMatchTypeInfo()">ℹ Match Type Guide</button>
+            </div>
         </header>
 
         <div class="stats" id="stats">
             <div class="stat-card">
                 <span class="number" id="totalJobs">-</span>
-                <span class="label">Tổng vị trí</span>
+                <span class="label">Total Positions</span>
             </div>
             <div class="stat-card">
                 <span class="number" id="totalGroups">-</span>
-                <span class="label">Nhóm nghề</span>
+                <span class="label">Job Groups</span>
             </div>
             <div class="stat-card">
                 <span class="number" id="totalOccupations">-</span>
-                <span class="label">Nghề</span>
+                <span class="label">Occupations</span>
             </div>
             <div class="stat-card">
                 <span class="number" id="exactMatches">-</span>
@@ -445,18 +556,18 @@
 
         <div class="controls">
             <div class="search-filter">
-                <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm theo vị trí, nghề, skills...">
+                <input type="text" id="searchInput" placeholder="Search by position, occupation, skills...">
                 <select id="groupFilter">
-                    <option value="">📂 Tất cả nhóm nghề</option>
+                    <option value="">All Job Groups</option>
                 </select>
                 <select id="occupationFilter">
-                    <option value="">💼 Tất cả nghề</option>
+                    <option value="">All Occupations</option>
                 </select>
             </div>
             <div class="filter-chips">
-                <div class="chip active" data-type="all">Tất cả</div>
+                <div class="chip active" data-type="all">All</div>
                 <div class="chip" data-type="exact_preferredLabel">Exact (Preferred)</div>
-                <div class="chip" data-type="exact_altLabels">Exact (Alt)</div>
+                <div class="chip" data-type="exact_altLabels">Exact (Alternative)</div>
                 <div class="chip" data-type="hybrid_medium">Hybrid Medium</div>
                 <div class="chip" data-type="hybrid_weak">Hybrid Weak</div>
                 <div class="chip" data-type="low_confidence">Low Confidence</div>
@@ -464,20 +575,20 @@
         </div>
 
         <div class="results-header">
-            <span id="resultsCount">Đang tải...</span>
+            <span id="resultsCount">Loading...</span>
         </div>
 
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 35px;">STT</th>
-                        <th style="width: 120px;">Nhóm nghề</th>
-                        <th style="width: 140px;">Nghề</th>
-                        <th style="width: 160px;">Vị trí</th>
+                        <th style="width: 35px;">No.</th>
+                        <th style="width: 120px;">Job Group</th>
+                        <th style="width: 140px;">Occupation</th>
+                        <th style="width: 160px;">Position</th>
                         <th style="width: 250px;">Essential Skills</th>
                         <th style="width: 250px;">Optional Skills</th>
-                        <th style="width: 180px;">ESCO Match</th>
+                        <th style="width: 180px;">Position Match in ESCO</th>
                         <th style="width: 100px;">Match Type</th>
                         <th style="width: 70px;">Score</th>
                     </tr>
@@ -488,14 +599,75 @@
         </div>
     </div>
 
-    <!-- Modal để hiển thị tất cả skills -->
+    <!-- Modal for Match Type Info -->
+    <div id="matchTypeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Match Type Classification</h2>
+                <span class="close" onclick="closeMatchTypeInfo()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Match types are determined based on matching scores between position titles and ESCO occupations:</p>
+                
+                <table class="match-type-table">
+                    <thead>
+                        <tr>
+                            <th>Match Type</th>
+                            <th style="width: 100px; text-align: center;">Score Range</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="badge-preview match-exact_preferredLabel">Exact (Preferred)</span>
+                            </td>
+                            <td style="text-align: center;">100%</td>
+                            <td>Perfect match with ESCO's primary label</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge-preview match-exact_altLabels">Exact (Alternative)</span>
+                            </td>
+                            <td style="text-align: center;">100%</td>
+                            <td>Exact match with ESCO's alternative label</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge-preview match-hybrid_medium">Hybrid Medium</span>
+                            </td>
+                            <td style="text-align: center;">70-99%</td>
+                            <td>Strong similarity match</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge-preview match-hybrid_weak">Hybrid Weak</span>
+                            </td>
+                            <td style="text-align: center;">60-69%</td>
+                            <td>Moderate similarity match</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge-preview match-low_confidence">Low Confidence</span>
+                            </td>
+                            <td style="text-align: center;">&lt; 60%</td>
+                            <td>Low similarity - requires review</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Skills -->
     <div id="skillsModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalTitle"></h2>
-                <span class="close">&times;</span>
+                <span class="close" onclick="closeSkillsModal()">&times;</span>
             </div>
-            <div id="modalSkills" class="modal-skills">
+            <div class="modal-body">
+                <div id="modalSkills" class="modal-skills"></div>
             </div>
         </div>
     </div>
@@ -510,21 +682,28 @@
         window.addEventListener('DOMContentLoaded', () => {
             initializeUI();
             renderTable();
-            setupModal();
         });
 
-        function setupModal() {
-            const modal = document.getElementById('skillsModal');
-            const closeBtn = document.querySelector('.close');
-            
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
+        function showMatchTypeInfo() {
+            document.getElementById('matchTypeModal').style.display = 'block';
+        }
+
+        function closeMatchTypeInfo() {
+            document.getElementById('matchTypeModal').style.display = 'none';
+        }
+
+        function closeSkillsModal() {
+            document.getElementById('skillsModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const matchModal = document.getElementById('matchTypeModal');
+            const skillsModal = document.getElementById('skillsModal');
+            if (event.target == matchModal) {
+                closeMatchTypeInfo();
             }
-            
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
+            if (event.target == skillsModal) {
+                closeSkillsModal();
             }
         }
 
@@ -617,7 +796,7 @@
         }
 
         function formatSkills(skillsText, type, rowIndex) {
-            if (!skillsText) return '<span style="color: #999;">Không có</span>';
+            if (!skillsText) return '<span style="color: #999;">None</span>';
             const skills = skillsText.split(';').map(s => s.trim()).filter(s => s);
             const displaySkills = skills.slice(0, 5);
             const remaining = skills.length - 5;
@@ -627,7 +806,7 @@
             ).join('');
             
             if (remaining > 0) {
-                html += `<span class="expand-btn" onclick="showAllSkills(${rowIndex}, '${type}')">+${remaining} more...</span>`;
+                html += `<span class="expand-btn" onclick="showAllSkills(${rowIndex}, '${type}')">+${remaining} more</span>`;
             }
             
             return html;
@@ -646,7 +825,7 @@
             modalTitle.textContent = `${skillType} - ${position}`;
             
             if (!skillsText) {
-                modalSkills.innerHTML = '<p style="color: #999;">Không có skills</p>';
+                modalSkills.innerHTML = '<p style="color: #999;">No skills available</p>';
             } else {
                 const skills = skillsText.split(';').map(s => s.trim()).filter(s => s);
                 modalSkills.innerHTML = skills.map(skill => 
@@ -660,17 +839,13 @@
         function renderTable() {
             const tbody = document.getElementById('tableBody');
             document.getElementById('resultsCount').textContent = 
-                `Hiển thị ${filteredData.length.toLocaleString()} / ${allData.length.toLocaleString()} kết quả`;
+                `Showing ${filteredData.length.toLocaleString()} of ${allData.length.toLocaleString()} results`;
 
             if (filteredData.length === 0) {
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="9" class="no-results">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.35-4.35"></path>
-                            </svg>
-                            <div>Không tìm thấy kết quả phù hợp</div>
+                            <div>No matching results found</div>
                         </td>
                     </tr>
                 `;
@@ -701,7 +876,7 @@
                         </td>
                         <td>
                             ${escapeHtml(item.esco_preferredLabel || '')}<br>
-                            ${item.esco_conceptUri ? `<a href="${escapeHtml(item.esco_conceptUri)}" target="_blank" class="link">→ ESCO URI</a>` : ''}
+                            ${item.esco_conceptUri ? `<a href="${escapeHtml(item.esco_conceptUri)}" target="_blank" class="link">→ View in ESCO</a>` : ''}
                         </td>
                         <td>
                             <span class="match-badge match-${item.match_type}">
@@ -711,7 +886,10 @@
                         <td>
                             <span class="score ${getScoreClass(item.match_score / 100)}">
                                 ${Math.round(item.match_score)}%
-                            </span>
+                            </span><br>
+                            <small style="color: #999; font-size: 9px;">
+                                S:${Math.round(item.score_semantic)}% F:${Math.round(item.score_fuzzy)}%
+                            </small>
                         </td>
                     </tr>
                 `;
